@@ -9,7 +9,6 @@ const Register = async ({ params }: { params: Promise<{ userId: string }> }) => 
   const user = await getUser(userId);
 
 
-
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">

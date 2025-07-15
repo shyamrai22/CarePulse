@@ -22,6 +22,7 @@ import FileUploader from "../FileUploader"
 
 
 
+
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -349,7 +350,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             label="I have read and understood the privacy policy of this healthcare facility and consent to the collection and use of my personal information as described."
             />       
 
-        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+        <SubmitButton isLoading={isLoading}>Submit and continue</SubmitButton>
       </form>
     </Form>
   )
