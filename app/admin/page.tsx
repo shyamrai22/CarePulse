@@ -8,7 +8,12 @@ import Link from 'next/link'
 
 
 const Admin = async () => {
-  const appointments = await getRecentAppointmentList();
+  const appointments = await getRecentAppointmentList() || {
+  scheduledCount: 0,
+  pendingCount: 0,
+  cancelledCount: 0,
+  documents: [],
+};
 
 
   return (
