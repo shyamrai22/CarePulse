@@ -93,16 +93,12 @@ export const updateAppointment = async ({appointmentId, userId, appointment, typ
       throw new Error('Appointment not found');
     }
 
-    const smsMessage = `
-    Hi, this is CarePulse.
+    const scheduledTime = formatDateTime(appointment.schedule!); // returns formatted string
+    const smsMessage =
+    type === 'schedule'
+    ? `Hi, this is CarePulse.\nYour appointment has been scheduled for ${scheduledTime} with Dr. ${appointment.primaryPhysician}.\n\nThank you for choosing CarePulse.`
+    : `Hi, this is CarePulse.\nWe’re sorry to inform you that your appointment has been cancelled.\nReason: ${appointment.cancellationReason}\n\nThank you for choosing CarePulse.`;
 
-    ${type === 'schedule' 
-      ? `Your appointment has been successfully scheduled for ${formatDateTime(appointment.schedule!).dateTime} with Dr. ${appointment.primaryPhysician}.`
-      : `We’re sorry to inform you that your appointment has been cancelled.\nReason: ${appointment.cancellationReason}`
-    }
-
-    Thank you for choosing CarePulse.
-    `;
 
     
     await sendSMSNotification(userId, smsMessage);
