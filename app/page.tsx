@@ -1,11 +1,15 @@
 import Image from "next/image"
 import PatientForm from "@/components/forms/PatientForm";
 import Link from "next/link"
+import PassKeyModal from "@/components/PasskeyModal";
 
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: Promise<{ admin?: string }> }) {
+  const params = await searchParams;
+  const isAdmin = params.admin === 'true'; 
+  
   return (
     <div className="flex h-screen max-h-screen">
-      {/* TODO : OTP Verification | PassKeyModal*/}
+      {isAdmin && <PassKeyModal/>}
 
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-width-[496px]">
